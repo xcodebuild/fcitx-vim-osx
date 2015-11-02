@@ -6,6 +6,10 @@
 " 此修改版用于 OS X 下的 https://github.com/CodeFalling/fcitx-remote-for-osx
  " ---------------------------------------------------------------------
 " Load Once:
+if exists('g:fcitx_remote')
+  finish
+endif
+
 set shell=bash
 set ttimeoutlen=50
 
@@ -50,3 +54,5 @@ au InsertEnter * call Fcitx2zh()
 let &cpo=s:keepcpo
 unlet s:keepcpo
 "vim:fdm=expr:fde=getline(v\:lnum-1)=~'\\v"\\s*-{20,}'?'>1'\:1
+
+let g:fcitx_remote = 1
