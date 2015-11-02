@@ -9,3 +9,7 @@ Use vundle
 ```
 Plugin 'CodeFalling/fcitx-vim-osx'
 ```
+
+# For OS X
+
+You have to install https://github.com/CodeFalling/fcitx-remote-for-osx
