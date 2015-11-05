@@ -47,8 +47,24 @@ function Fcitx2zh()
 endfunction
 " ---------------------------------------------------------------------
 " Autocmds:
+augroup Fcitx
 au InsertLeave * call Fcitx2en()
 au InsertEnter * call Fcitx2zh()
+augroup END
+
+"Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  au! Fcitx InsertLeave *
+  au! Fcitx InsertEnter *
+endfunction
+
+function! Multiple_cursors_after()
+  augroup Fcitx
+  au InsertLeave * call Fcitx2en()
+  au InsertEnter * call Fcitx2zh()
+  augroup END
+endfunction
+
 " ---------------------------------------------------------------------
 "  Restoration And Modelines:
 let &cpo=s:keepcpo
