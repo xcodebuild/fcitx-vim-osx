@@ -59,6 +59,7 @@ function! Multiple_cursors_before()
 endfunction
 
 function! Multiple_cursors_after()
+  call Fcitx2en()	
   augroup Fcitx
   au InsertLeave * call Fcitx2en()
   au InsertEnter * call Fcitx2zh()
