@@ -47,23 +47,40 @@ function Fcitx2zh()
 endfunction
 " ---------------------------------------------------------------------
 " Autocmds:
-augroup Fcitx
-au InsertLeave * call Fcitx2en()
-au InsertEnter * call Fcitx2zh()
-augroup END
+function Fcitx2zhOnce()
+  call Fcitx2zh()
+  call UnBindAu()
+endfunction
 
-"Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
+function BindAu2zhOnce()
+  augroup Fcitx
+   au InsertEnter * call Fcitx2zhOnce()
+  augroup END
+endfunction
+
+function BindAu()
+  augroup Fcitx
+   au InsertLeave * call Fcitx2en()
+   au InsertEnter * call Fcitx2zh()
+  augroup END
+endfunction
+
+function UnBindAu()
   au! Fcitx InsertLeave *
   au! Fcitx InsertEnter *
 endfunction
 
+call BindAu()
+
+"Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  call UnBindAu()
+  call BindAu2zhOnce()
+endfunction
+
 function! Multiple_cursors_after()
-  call Fcitx2en()	
-  augroup Fcitx
-  au InsertLeave * call Fcitx2en()
-  au InsertEnter * call Fcitx2zh()
-  augroup END
+  call Fcitx2en()
+  call BindAu()
 endfunction
 
 " ---------------------------------------------------------------------
