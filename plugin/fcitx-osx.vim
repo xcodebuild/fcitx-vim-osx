@@ -10,7 +10,6 @@ if exists('g:fcitx_remote')
   finish
 endif
 
-set shell=bash
 set ttimeoutlen=50
 
 if (has("win32") || has("win95") || has("win64") || has("win16"))
