@@ -61,6 +61,7 @@ function BindAu()
   augroup Fcitx
    au InsertLeave * call Fcitx2en()
    au InsertEnter * call Fcitx2zh()
+   au VimEnter * call Fcitx2en()
   augroup END
 endfunction
 
