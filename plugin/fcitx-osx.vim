@@ -70,7 +70,16 @@ function UnBindAu()
   au! Fcitx InsertEnter *
 endfunction
 
-call BindAu()
+"call once when enter insert mode instead of vim startup
+let g:called_bind = 0
+function EchoBind()
+    if (g:called_bind==0)
+        call BindAu()
+    endif
+    let g:called_bind =1
+endfunction
+
+autocmd InsertEnter * call EchoBind()
 
 "Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
